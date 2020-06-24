@@ -1,0 +1,20 @@
+# Created by https://www.toptal.com/developers/gitignore/api/java,maven
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,maven
+
+### Java ###
+# Compiled class file
+*.class
+
+# Package Files #
+*.jar
+*.war
+
+### Maven ###
+target/
+
+### JetBrains ###
+
+.idea/
+*.iml
+
+# End of https://www.toptal.com/developers/gitignore/api/java,maven
