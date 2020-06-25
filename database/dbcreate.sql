@@ -36,14 +36,14 @@ CREATE TABLE user_university_group (
     CONSTRAINT FOREIGN KEY (university_group_id) REFERENCES university_group(id)
 );
 
-CREATE TABLE tests (
+CREATE TABLE test (
     id INTEGER AUTO_INCREMENT,
     name TINYTEXT NOT NULL,
 
     CONSTRAINT PRIMARY KEY (id)
 );
 
-CREATE TABLE test_attempts (
+CREATE TABLE test_attempt (
     id INTEGER AUTO_INCREMENT,
     user_id INTEGER NOT NULL,
     test_id INTEGER NOT NULL,
@@ -52,46 +52,46 @@ CREATE TABLE test_attempts (
 
     CONSTRAINT PRIMARY KEY (id),
     CONSTRAINT FOREIGN KEY (user_id) REFERENCES user(id),
-    CONSTRAINT FOREIGN KEY (test_id) REFERENCES tests(id),
+    CONSTRAINT FOREIGN KEY (test_id) REFERENCES test(id),
     CONSTRAINT attempts_chk_score CHECK ( score >= 0 )
 );
 
-CREATE TABLE test_deadlines (
+CREATE TABLE test_deadline (
     test_id INTEGER NOT NULL,
     university_group_id INTEGER NOT NULL,
     deadline DATETIME NOT NULL,
 
     CONSTRAINT PRIMARY KEY (test_id, university_group_id),
-    CONSTRAINT FOREIGN KEY (test_id) REFERENCES tests(id),
+    CONSTRAINT FOREIGN KEY (test_id) REFERENCES test(id),
     CONSTRAINT FOREIGN KEY (university_group_id) REFERENCES university_group(id)
 );
 
-CREATE TABLE test_questions (
+CREATE TABLE test_question (
     id INTEGER AUTO_INCREMENT,
     test_id INTEGER,
     question TEXT NOT NULL,
     score INTEGER NOT NULL,
 
     CONSTRAINT PRIMARY KEY (id),
-    CONSTRAINT FOREIGN KEY (test_id) REFERENCES tests(id),
+    CONSTRAINT FOREIGN KEY (test_id) REFERENCES test(id),
     CONSTRAINT questions_chk_score CHECK ( score >= 0 )
 );
 
-CREATE TABLE test_answers (
+CREATE TABLE test_answer (
     id INTEGER AUTO_INCREMENT,
     answer TEXT,
 
     CONSTRAINT PRIMARY KEY (id)
 );
 
-CREATE TABLE test_question_answers (
+CREATE TABLE test_question_answer (
     question_id INTEGER,
     answer_id INTEGER,
     is_correct BOOLEAN,
 
     CONSTRAINT PRIMARY KEY (question_id, answer_id),
-    CONSTRAINT FOREIGN KEY (question_id) REFERENCES test_questions(id),
-    CONSTRAINT FOREIGN KEY (answer_id) REFERENCES test_answers(id),
+    CONSTRAINT FOREIGN KEY (question_id) REFERENCES test_question(id),
+    CONSTRAINT FOREIGN KEY (answer_id) REFERENCES test_answer(id),
 #   Надо подумать, стоит ли здесь делать UNIQUE
     CONSTRAINT UNIQUE (answer_id)
 );
