@@ -9,7 +9,8 @@ services:
         networks:
             - ts-net
         environment:
-            - MYSQL_ROOT_PASSWORD=qwerty
+            # Specify MySQL password here
+            # - MYSQL_ROOT_PASSWORD=<some_password>
             - TZ=Europe/Moscow
 
 networks:
