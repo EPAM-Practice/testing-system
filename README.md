@@ -9,5 +9,5 @@ This is a web app that provides a platform for teachers and students to prepare 
 | Team member    | Role                                 | Contact email      |
 | :------------- | :----------------------------------- | :----------------- |
 | Artem Krylov   | Database designer, Backend developer | kav128@outlook.com |
-| Anna Savelieva | Backend developer                    | annspb1@mail.ru    |
+| Anna Saveleva | Backend developer                    | annspb1@mail.ru    |
 | Petr Bozhko    | Backend developer                    | bozhko999@mail.ru  |
