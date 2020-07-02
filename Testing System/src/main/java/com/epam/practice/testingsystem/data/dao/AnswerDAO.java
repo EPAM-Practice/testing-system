@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AnswerDAO extends DbAccess implements IAnswerDAO {
+class AnswerDAO extends DbAccess implements IAnswerDAO {
     @Override
     public int add(Answer data) {
         try (Connection connection = DataConnection.getConnection()) {

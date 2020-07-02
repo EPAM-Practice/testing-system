@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TestDAO extends DbAccess implements ITestDAO {
+class TestDAO extends DbAccess implements ITestDAO {
     @Override
     public int add(Test data) {
         try (Connection connection = DataConnection.getConnection()) {

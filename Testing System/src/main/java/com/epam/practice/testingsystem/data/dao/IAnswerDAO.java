@@ -5,7 +5,7 @@ import com.epam.practice.testingsystem.data.dto.Question;
 
 import java.util.List;
 
-public interface IAnswerDAO extends CRUDDAO<Answer> {
+interface IAnswerDAO extends CRUDDAO<Answer> {
     List<Answer> findAll(int questionId);
     List<Answer> findAll(Question question);
 }

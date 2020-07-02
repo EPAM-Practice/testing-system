@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
+class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
 
     @Override
     public int add(UniversityGroup data) {

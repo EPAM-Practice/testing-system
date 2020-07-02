@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AttemptDAO extends DbAccess implements IAttemptDAO {
+class AttemptDAO extends DbAccess implements IAttemptDAO {
     @Override
     public int add(Attempt data) {
         try (Connection connection = DataConnection.getConnection()) {
