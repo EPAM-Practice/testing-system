@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+    db:
+        build: database/
+        # For debug only
+        ports:
+            - 3306:3306
+        networks:
+            - ts-net
+        environment:
+            # Specify MySQL password here
+            # - MYSQL_ROOT_PASSWORD=<some_password>
+            - TZ=Europe/Moscow
+
+networks:
+    ts-net:
