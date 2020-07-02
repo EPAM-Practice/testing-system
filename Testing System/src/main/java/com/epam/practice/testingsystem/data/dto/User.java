@@ -1,4 +1,4 @@
-package com.epam.practice.sample.data.dto;
+package com.epam.practice.testingsystem.data.dto;
 
 import lombok.Getter;
 import lombok.NonNull;
