@@ -20,4 +20,8 @@ public class DAOFactory {
     public static IAttemptDAO getAttemptDAO() {
         return new AttemptDAO();
     }
+
+    public static IDeadlineDAO getDeadlineDAO() {
+        return new DeadlineDAO();
+    }
 }

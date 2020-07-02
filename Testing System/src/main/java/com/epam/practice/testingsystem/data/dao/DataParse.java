@@ -5,6 +5,7 @@ import com.epam.practice.testingsystem.data.dto.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -109,6 +110,22 @@ class DataParse {
             test.setId(id);
             test.setName(name);
             return test;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    static Deadline getDeadline(ResultSet rs) {
+        assert rs != null;
+        try {
+            int testId = rs.getInt("test_id");
+            Test test = DAOFactory.getTestDAO().find(testId);
+            int universityGroupId = rs.getInt("university_group_id");
+            UniversityGroup universityGroup = DAOFactory.getUniversityGroupDAO().find(universityGroupId);
+            LocalDate deadline = rs.getDate("deadline").toLocalDate();
+            return new Deadline(test, universityGroup, deadline);
         }
         catch (SQLException e) {
             e.printStackTrace();
