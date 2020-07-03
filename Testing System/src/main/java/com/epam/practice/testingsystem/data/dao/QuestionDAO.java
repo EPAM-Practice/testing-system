@@ -51,6 +51,7 @@ class QuestionDAO extends DbAccess implements IQuestionDAO {
         try (Connection connection = DataConnection.getConnection()) {
             assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM test_question WHERE test_id = ? ORDER BY id");
+            statement.setInt(1, testId);
             ResultSet rs = statement.executeQuery();
             return DataParse.getList(rs, DataParse::getQuestion);
         }
