@@ -1,32 +1,22 @@
 package com.epam.practice.testingsystem.data.dto;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.Setter;
 
 import java.util.Date;
 
+@Data
 public class Attempt {
-    @Getter
-    @Setter
     private int id;
 
-    @Getter
-    @Setter
     @NonNull
     private User user;
 
-    @Getter
-    @Setter
     @NonNull
     private Test test;
 
-    @Getter
-    @Setter
     private int score;
 
-    @Getter
-    @Setter
     @NonNull
     private Date dateTime;
 

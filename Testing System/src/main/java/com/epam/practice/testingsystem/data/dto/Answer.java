@@ -1,22 +1,17 @@
 package com.epam.practice.testingsystem.data.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+@Data
 public class Answer {
-
-    @Getter
-    @Setter
     private int id;
 
-    @Getter
-    @Setter
     @NonNull
     private String answer;
 
-    @Getter
-    @Setter
     private Boolean isCorrect;
 
     public Answer() {

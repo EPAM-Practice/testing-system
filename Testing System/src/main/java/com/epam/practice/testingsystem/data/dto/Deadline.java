@@ -1,24 +1,18 @@
 package com.epam.practice.testingsystem.data.dto;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
+@Data
 public class Deadline {
-    @Getter
-    @Setter
     @NonNull
     private Test test;
-    @Getter
-    @Setter
+
     @NonNull
     private UniversityGroup universityGroup;
 
-    @Getter
-    @Setter
-    @NonNull
     private LocalDate deadline;
 
     public Deadline() {

@@ -1,16 +1,12 @@
 package com.epam.practice.testingsystem.data.dto;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.Setter;
 
+@Data
 public class Test {
-    @Getter
-    @Setter
     private int id;
 
-    @Getter
-    @Setter
     @NonNull
     private String name;
 

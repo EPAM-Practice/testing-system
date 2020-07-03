@@ -1,28 +1,20 @@
 package com.epam.practice.testingsystem.data.dto;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class Question {
-    @Getter
-    @Setter
     private int id;
 
-    @Getter
-    @Setter
     @NonNull
     private String question;
 
-    @Getter
-    @Setter
     private int score;
 
-    @Getter
-    @Setter
     private List<Answer> answers;
 
     public Question() {
