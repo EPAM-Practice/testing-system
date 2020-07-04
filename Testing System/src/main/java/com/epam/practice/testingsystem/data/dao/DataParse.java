@@ -23,7 +23,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("Incorrect data structure");
         }
     }
 
@@ -38,9 +38,9 @@ class DataParse {
             universityGroup.setName(name);
             return universityGroup;
         }
-            catch (SQLException e) {
+        catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("Incorrect data structure");
         }
     }
 
@@ -57,7 +57,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("Incorrect data structure");
         }
     }
 
@@ -73,7 +73,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("Incorrect data structure");
         }
     }
 
@@ -102,7 +102,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("Incorrect data structure");
         }
     }
 
@@ -119,7 +119,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("Incorrect data structure");
         }
     }
 
@@ -136,7 +136,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("Incorrect data structure");
         }
     }
 
