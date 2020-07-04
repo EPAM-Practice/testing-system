@@ -96,4 +96,33 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
     public void delete(Answer data) {
         delete(data.getId());
     }
+
+    @Override
+    public void link(Question question, Answer answer) {
+        try (Connection connection = DataConnection.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO test_question_answer(question_id, answer_id, is_correct) VALUES (?, ?, ?)");
+            statement.setInt(1, question.getId());
+            statement.setInt(2, answer.getId());
+            statement.setBoolean(3, answer.getIsCorrect());
+            statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("An error occurred while trying to access the database");
+        }
+    }
+
+    @Override
+    public void unlink(Question question, Answer answer) {
+        try (Connection connection = DataConnection.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM test_question_answer WHERE question_id = ? AND answer_id = ?");
+            statement.setInt(1, question.getId());
+            statement.setInt(2, answer.getId());
+            statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("An error occurred while trying to access the database");
+        }
+    }
 }
