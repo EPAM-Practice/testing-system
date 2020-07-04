@@ -14,7 +14,6 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
     @Override
     public int add(UniversityGroup data) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("INSERT INTO university_group(name) VALUES (?)");
             statement.setString(1, data.getName());
             statement.executeUpdate();
@@ -22,47 +21,43 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return -1;
+            throw new RuntimeException("An error occurred while trying to access the database");
         }
     }
 
     @Override
     public UniversityGroup find(int id) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM university_group WHERE id = ?");
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
                 return DataParse.getUniversityGroup(rs);
-            }
             else
                 return null;
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("An error occurred while trying to access the database");
         }
     }
 
     @Override
     public List<UniversityGroup> findAll() {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM university_group ORDER BY id");
             ResultSet rs = statement.executeQuery();
             return DataParse.getList(rs, DataParse::getUniversityGroup);
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("An error occurred while trying to access the database");
         }
     }
 
     @Override
     public void update(UniversityGroup data) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("UPDATE university_group SET name = ? WHERE id = ?");
             statement.setString(1, data.getName());
             statement.setInt(2, data.getId());
@@ -70,19 +65,20 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException("An error occurred while trying to access the database");
         }
     }
 
     @Override
     public void delete(int id) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("DELETE FROM university_group WHERE id = ?");
             statement.setInt(1, id);
             statement.executeUpdate();
         }
         catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException("An error occurred while trying to access the database");
         }
     }
 

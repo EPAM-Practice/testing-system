@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataConnection {
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException {
         String url = System.getenv("DB_URL");
         String user = System.getenv("DB_USER");
         String password = System.getenv("DB_PASSWORD");
@@ -15,7 +15,7 @@ public class DataConnection {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw e;
         }
     }
 }

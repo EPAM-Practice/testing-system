@@ -12,7 +12,8 @@ import java.util.function.Function;
 
 class DataParse {
     static User getUser(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             int id = rs.getInt("id");
             String name = rs.getString("user_name");
@@ -27,7 +28,8 @@ class DataParse {
     }
 
     static UniversityGroup getUniversityGroup(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             UniversityGroup universityGroup = new UniversityGroup();
             int id = rs.getInt("id");
@@ -43,7 +45,8 @@ class DataParse {
     }
 
     static Answer getAnswer(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             int id = rs.getInt("id");
             String answer = rs.getString("answer");
@@ -59,7 +62,8 @@ class DataParse {
     }
 
     static Question getQuestion(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             int id = rs.getInt("id");
             String question = rs.getString("question");
@@ -74,7 +78,8 @@ class DataParse {
     }
 
     static Attempt getAttempt(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             Attempt attempt = new Attempt();
             int id = rs.getInt("id");
@@ -102,7 +107,8 @@ class DataParse {
     }
 
     static Test getTest(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             int id = rs.getInt("id");
             String name = rs.getString("name");
@@ -118,7 +124,8 @@ class DataParse {
     }
 
     static Deadline getDeadline(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             int testId = rs.getInt("test_id");
             Test test = DAOFactory.getTestDAO().find(testId);
@@ -133,9 +140,9 @@ class DataParse {
         }
     }
 
-    static <T> List<T> getList(ResultSet rs, Function<ResultSet, T> handler)
-    {
-        assert rs != null;
+    static <T> List<T> getList(ResultSet rs, Function<ResultSet, T> handler) {
+        if (rs == null)
+            throw new IllegalArgumentException();
         List<T> list = new ArrayList<>();
         try {
             while (rs.next()) {

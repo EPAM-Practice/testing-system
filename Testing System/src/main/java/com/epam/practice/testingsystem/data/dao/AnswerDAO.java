@@ -14,7 +14,6 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
     @Override
     public int add(Answer data) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("INSERT INTO test_answer(answer) VALUES (?)");
             statement.setString(1, data.getAnswer());
             statement.executeUpdate();
@@ -22,14 +21,13 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return -1;
+            throw new RuntimeException("An error occurred while trying to access the database");
         }
     }
 
     @Override
     public Answer find(int id) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT *, NULL as is_correct FROM test_answer WHERE id = ?");
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
@@ -40,14 +38,13 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("An error occurred while trying to access the database");
         }
     }
 
     @Override
     public List<Answer> findAll(int questionId) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT id, answer, is_correct " +
                     "FROM test_answer ta " +
                         "INNER JOIN test_question_answer tqa ON ta.id = tqa.answer_id " +
@@ -59,7 +56,7 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("An error occurred while trying to access the database");
         }
     }
 
@@ -71,7 +68,6 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
     @Override
     public void update(Answer data) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("UPDATE test_answer SET answer = ? WHERE id = ?");
             statement.setString(1, data.getAnswer());
             statement.setInt(2, data.getId());
@@ -79,19 +75,20 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException("An error occurred while trying to access the database");
         }
     }
 
     @Override
     public void delete(int id) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("DELETE FROM test_answer WHERE id = ?");
             statement.setInt(1, id);
             statement.executeUpdate();
         }
         catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException("An error occurred while trying to access the database");
         }
     }
 
