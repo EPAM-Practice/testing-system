@@ -9,13 +9,6 @@ public class DataConnection {
         String url = System.getenv("DB_URL");
         String user = System.getenv("DB_USER");
         String password = System.getenv("DB_PASSWORD");
-
-        try {
-            return DriverManager.getConnection(url, user, password);
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        }
+        return DriverManager.getConnection(url, user, password);
     }
 }
