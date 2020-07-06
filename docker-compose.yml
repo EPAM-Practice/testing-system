@@ -23,7 +23,7 @@ services:
             - DB_URL=jdbc:mariadb://localhost:3306/testing_system
             - DB_USER=root
             # Specify MySQL password here
-            # - MYSQL_ROOT_PASSWORD=<some_password>
+            # - DB_PASSWORD=<some_password>
             - TZ=Europe/Moscow
 
 networks:
