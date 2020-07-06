@@ -20,7 +20,7 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -37,7 +37,7 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -50,7 +50,7 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -64,7 +64,7 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -77,7 +77,7 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 

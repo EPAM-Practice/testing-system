@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 abstract class DbAccess {
+    protected static final String dbAccessExceptionMessage = "An error occurred while trying to access the database";
+
     protected static int getLastInsertedId(Connection connection) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement("SELECT LAST_INSERT_ID()")) {
             ResultSet rs = statement.executeQuery();

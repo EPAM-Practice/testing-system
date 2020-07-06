@@ -23,7 +23,7 @@ class QuestionDAO extends DbAccess implements IQuestionDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -40,7 +40,7 @@ class QuestionDAO extends DbAccess implements IQuestionDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -54,7 +54,7 @@ class QuestionDAO extends DbAccess implements IQuestionDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -74,7 +74,7 @@ class QuestionDAO extends DbAccess implements IQuestionDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -87,7 +87,7 @@ class QuestionDAO extends DbAccess implements IQuestionDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 

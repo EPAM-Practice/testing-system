@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.function.Function;
 
 class DataParse {
+    private static final String dataStructureExceptionMessage = "Incorrect data structure";
+
     static User getUser(ResultSet rs) {
         if (rs == null)
             throw new IllegalArgumentException();
@@ -29,7 +31,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Incorrect data structure");
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
@@ -46,7 +48,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Incorrect data structure");
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
@@ -63,7 +65,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Incorrect data structure");
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
@@ -79,7 +81,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Incorrect data structure");
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
@@ -102,7 +104,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Incorrect data structure");
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
@@ -119,7 +121,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Incorrect data structure");
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
@@ -136,7 +138,7 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Incorrect data structure");
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 

@@ -21,7 +21,7 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -38,7 +38,7 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -51,7 +51,7 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -65,7 +65,7 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
@@ -78,7 +78,7 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("An error occurred while trying to access the database");
+            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
         }
     }
 
