@@ -15,11 +15,16 @@ public class Answer {
     @NonNull
     private String answer;
 
+    @Getter
+    @Setter
+    private Boolean isCorrect;
+
     public Answer() {
     }
 
-    public Answer(int id, @NonNull String answer) {
+    public Answer(int id, @NonNull String answer, Boolean isCorrect) {
         this.id = id;
         this.answer = answer;
+        this.isCorrect = isCorrect;
     }
 }

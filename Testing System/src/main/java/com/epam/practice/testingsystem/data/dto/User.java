@@ -32,4 +32,5 @@ public class User {
         this.passwordHash = passwordHash;
         this.roleId = roleId;
     }
+
 }

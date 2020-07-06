@@ -13,5 +13,18 @@ services:
             # - MYSQL_ROOT_PASSWORD=<some_password>
             - TZ=Europe/Moscow
 
+    testingsystem:
+        build: Testing System/
+        ports:
+            - 8080:8080
+        networks:
+            - ts-net
+        environment:
+            - DB_URL=jdbc:mariadb://localhost:3306/testing_system
+            - DB_USER=root
+            # Specify MySQL password here
+            # - MYSQL_ROOT_PASSWORD=<some_password>
+            - TZ=Europe/Moscow
+
 networks:
     ts-net:
