@@ -35,28 +35,4 @@ class QuestionDAOTest {
         Question question1 = questionDAO.find(i);
         assertEquals(question1.getQuestion(), question.getQuestion());
     }
-
-    @Test
-    void find() {
-    }
-
-    @Test
-    void findAll() {
-    }
-
-    @Test
-    void testFindAll() {
-    }
-
-    @Test
-    void update() {
-    }
-
-    @Test
-    void delete() {
-    }
-
-    @Test
-    void testDelete() {
-    }
 }
