@@ -1,6 +1,12 @@
 package com.epam.practice.testingsystem.data.dao;
 
-import com.epam.practice.testingsystem.data.dto.*;
+import com.epam.practice.testingsystem.data.dto.Answer;
+import com.epam.practice.testingsystem.data.dto.Attempt;
+import com.epam.practice.testingsystem.data.dto.Deadline;
+import com.epam.practice.testingsystem.data.dto.Question;
+import com.epam.practice.testingsystem.data.dto.Test;
+import com.epam.practice.testingsystem.data.dto.UniversityGroup;
+import com.epam.practice.testingsystem.data.dto.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
