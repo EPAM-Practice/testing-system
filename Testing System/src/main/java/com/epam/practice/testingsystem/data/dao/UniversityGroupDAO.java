@@ -21,7 +21,7 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -38,7 +38,7 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -51,7 +51,7 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -65,21 +65,13 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public void delete(int id) {
-        try (Connection connection = DataConnection.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM university_group WHERE id = ?");
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
-        }
+        delete1Arg("university_group", "id", id);
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-class DeadlineDAO implements IDeadlineDAO {
+class DeadlineDAO extends DbAccess implements IDeadlineDAO {
     @Override
     public void setDeadline(Test test, UniversityGroup group, LocalDate date) {
         if (getDeadline(test, group) == null)
@@ -32,7 +32,7 @@ class DeadlineDAO implements IDeadlineDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -47,7 +47,7 @@ class DeadlineDAO implements IDeadlineDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -65,7 +65,7 @@ class DeadlineDAO implements IDeadlineDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -79,7 +79,7 @@ class DeadlineDAO implements IDeadlineDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -93,7 +93,11 @@ class DeadlineDAO implements IDeadlineDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
+    }
+
+    public void removeDeadline(Test test, UniversityGroup group) {
+        delete2Arg("test_deadline", "test_id", test.getId(), "university_group_id", group.getId());
     }
 }

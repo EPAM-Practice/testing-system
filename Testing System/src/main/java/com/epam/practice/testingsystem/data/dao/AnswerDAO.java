@@ -81,15 +81,7 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
 
     @Override
     public void delete(int id) {
-        try (Connection connection = DataConnection.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM test_answer WHERE id = ?");
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
-        }
+        delete1Arg("test_answer", "id", id);
     }
 
     @Override

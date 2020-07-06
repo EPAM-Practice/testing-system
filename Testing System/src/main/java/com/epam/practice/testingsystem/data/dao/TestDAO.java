@@ -20,7 +20,7 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -37,7 +37,7 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -50,7 +50,7 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -64,21 +64,13 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public void delete(int id) {
-        try (Connection connection = DataConnection.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM test WHERE id = ?");
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
-        }
+        delete1Arg("test", "id", id);
     }
 
     @Override

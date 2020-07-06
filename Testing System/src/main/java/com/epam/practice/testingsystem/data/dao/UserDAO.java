@@ -23,7 +23,7 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -40,7 +40,7 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -53,7 +53,7 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -67,21 +67,13 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public void delete(int id) {
-        try (Connection connection = DataConnection.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM user WHERE id = ?");
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
-        }
+        delete1Arg("user", "id", id);
     }
 
     @Override
@@ -99,7 +91,7 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -113,7 +105,7 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
@@ -132,7 +124,7 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(DbAccess.dbAccessExceptionMessage);
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 }
