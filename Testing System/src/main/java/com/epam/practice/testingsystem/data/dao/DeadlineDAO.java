@@ -70,7 +70,7 @@ class DeadlineDAO extends DbAccess implements IDeadlineDAO {
     }
 
     @Override
-    public List<Deadline> getDeadlines(Test test) {
+    public List<Deadline> getDeadlinesByTest(Test test) {
         try (Connection connection = DataConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM test_deadline WHERE test_id = ?");
             statement.setInt(1, test.getId());
@@ -84,7 +84,7 @@ class DeadlineDAO extends DbAccess implements IDeadlineDAO {
     }
 
     @Override
-    public List<Deadline> getDeadlines(UniversityGroup universityGroup) {
+    public List<Deadline> getDeadlinesByUniversityGroup(UniversityGroup universityGroup) {
         try (Connection connection = DataConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM test_deadline WHERE university_group_id = ?");
             statement.setInt(1, universityGroup.getId());
