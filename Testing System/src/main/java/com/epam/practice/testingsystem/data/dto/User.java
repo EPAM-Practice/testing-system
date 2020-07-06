@@ -1,9 +1,13 @@
 package com.epam.practice.testingsystem.data.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     private int id;
 
@@ -14,14 +18,4 @@ public class User {
     private String passwordHash;
 
     private int roleId;
-
-    public User() {
-    }
-
-    public User(int id, @NonNull String name, @NonNull String passwordHash, int roleId) {
-        this.id = id;
-        this.name = name;
-        this.passwordHash = passwordHash;
-        this.roleId = roleId;
-    }
 }

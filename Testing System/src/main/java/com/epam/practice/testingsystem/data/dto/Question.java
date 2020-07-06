@@ -1,12 +1,15 @@
 package com.epam.practice.testingsystem.data.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Question {
     private int id;
 
@@ -16,15 +19,4 @@ public class Question {
     private int score;
 
     private List<Answer> answers;
-
-    public Question() {
-        answers = new ArrayList<>();
-    }
-
-    public Question(int id, @NonNull String question, int score, List<Answer> answers) {
-        this.id = id;
-        this.question = question;
-        this.score = score;
-        this.answers = answers;
-    }
 }

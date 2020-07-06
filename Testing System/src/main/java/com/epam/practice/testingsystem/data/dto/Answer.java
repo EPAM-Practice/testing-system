@@ -1,9 +1,13 @@
 package com.epam.practice.testingsystem.data.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Answer {
     private int id;
 
@@ -11,13 +15,4 @@ public class Answer {
     private String answer;
 
     private Boolean isCorrect;
-
-    public Answer() {
-    }
-
-    public Answer(int id, @NonNull String answer, Boolean isCorrect) {
-        this.id = id;
-        this.answer = answer;
-        this.isCorrect = isCorrect;
-    }
 }

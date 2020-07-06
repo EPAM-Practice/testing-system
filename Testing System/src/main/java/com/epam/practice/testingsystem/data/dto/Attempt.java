@@ -1,11 +1,15 @@
 package com.epam.practice.testingsystem.data.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.time.LocalTime;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Attempt {
     private int id;
 
@@ -19,15 +23,4 @@ public class Attempt {
 
     @NonNull
     private LocalTime dateTime;
-
-    public Attempt() {
-    }
-
-    public Attempt(int id, @NonNull User user, @NonNull Test test, int score, @NonNull LocalTime dateTime) {
-        this.id = id;
-        this.user = user;
-        this.test = test;
-        this.score = score;
-        this.dateTime = dateTime;
-    }
 }
