@@ -10,8 +10,8 @@ import com.epam.practice.testingsystem.data.dto.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -87,24 +87,18 @@ class DataParse {
         if (rs == null)
             throw new IllegalArgumentException();
         try {
-            Attempt attempt = new Attempt();
             int id = rs.getInt("id");
             int testId = rs.getInt("test_id");
             int userId = rs.getInt("user_id");
             int score = rs.getInt("score");
-            Time datetime = rs.getTime("datetime");
-            attempt.setId(id);
-            attempt.setDateTime(datetime);
-            attempt.setScore(score);
+            LocalTime datetime = rs.getTime("datetime").toLocalTime();
 
             ITestDAO testDAO = new TestDAO();
             Test test = testDAO.find(testId);
-            attempt.setTest(test);
 
             IUserDAO userDAO = new UserDAO();
             User user = userDAO.find(userId);
-            attempt.setUser(user);
-            return attempt;
+            return new Attempt(id, user, test, score, datetime);
         }
         catch (SQLException e) {
             e.printStackTrace();

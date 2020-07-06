@@ -3,7 +3,7 @@ package com.epam.practice.testingsystem.data.dto;
 import lombok.Data;
 import lombok.NonNull;
 
-import java.util.Date;
+import java.time.LocalTime;
 
 @Data
 public class Attempt {
@@ -18,12 +18,12 @@ public class Attempt {
     private int score;
 
     @NonNull
-    private Date dateTime;
+    private LocalTime dateTime;
 
     public Attempt() {
     }
 
-    public Attempt(int id, @NonNull User user, @NonNull Test test, int score, @NonNull Date dateTime) {
+    public Attempt(int id, @NonNull User user, @NonNull Test test, int score, @NonNull LocalTime dateTime) {
         this.id = id;
         this.user = user;
         this.test = test;
