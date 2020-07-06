@@ -48,13 +48,13 @@ class QuestionDAOTest {
 
     @Test
     void findAll() {
-        List<Question> questions = DAOFactory.getQuestionDAO().findAll(1);
+        List<Question> questions = DAOFactory.getQuestionDAO().findAllByTest(1);
         assertEquals(4, questions.size());
     }
 
     @Test
     void testFindAll() {
-        List<Question> questions = DAOFactory.getQuestionDAO().findAll(DAOFactory.getTestDAO().find(1));
+        List<Question> questions = DAOFactory.getQuestionDAO().findAllByTest(DAOFactory.getTestDAO().find(1));
         assertEquals(4, questions.size());
     }
 

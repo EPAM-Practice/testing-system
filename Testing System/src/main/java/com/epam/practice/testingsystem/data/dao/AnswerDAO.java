@@ -43,7 +43,7 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
     }
 
     @Override
-    public List<Answer> findAll(int questionId) {
+    public List<Answer> findAllByQuestion(int questionId) {
         try (Connection connection = DataConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT id, answer, is_correct " +
                     "FROM test_answer ta " +
@@ -61,8 +61,8 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
     }
 
     @Override
-    public List<Answer> findAll(Question question) {
-        return findAll(question.getId());
+    public List<Answer> findAllByQuestion(Question question) {
+        return findAllByQuestion(question.getId());
     }
 
     @Override

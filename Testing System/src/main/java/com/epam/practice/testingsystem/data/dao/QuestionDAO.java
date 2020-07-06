@@ -45,7 +45,7 @@ class QuestionDAO extends DbAccess implements IQuestionDAO {
     }
 
     @Override
-    public List<Question> findAll(int testId) {
+    public List<Question> findAllByTest(int testId) {
         try (Connection connection = DataConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM test_question WHERE test_id = ? ORDER BY id");
             statement.setInt(1, testId);
@@ -59,8 +59,8 @@ class QuestionDAO extends DbAccess implements IQuestionDAO {
     }
 
     @Override
-    public List<Question> findAll(Test test) {
-        return findAll(test.getId());
+    public List<Question> findAllByTest(Test test) {
+        return findAllByTest(test.getId());
     }
 
     @Override
