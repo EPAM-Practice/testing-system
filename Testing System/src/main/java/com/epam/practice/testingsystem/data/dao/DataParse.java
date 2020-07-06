@@ -94,12 +94,8 @@ class DataParse {
             int userId = rs.getInt("user_id");
             int score = rs.getInt("score");
             LocalTime datetime = rs.getTime("datetime").toLocalTime();
-
-            ITestDAO testDAO = new TestDAO();
-            Test test = testDAO.find(testId);
-
-            IUserDAO userDAO = new UserDAO();
-            User user = userDAO.find(userId);
+            Test test = DAOFactory.getTestDAO().find(testId);
+            User user = DAOFactory.getUserDAO().find(userId);
             return new Attempt(id, user, test, score, datetime);
         }
         catch (SQLException e) {
