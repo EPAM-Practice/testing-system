@@ -5,12 +5,12 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>RegiserServlet</servlet-name>
+        <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.epam.practice.testingsystem.servlets.security.RegisterServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>RegiserServlet</servlet-name>
+        <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
