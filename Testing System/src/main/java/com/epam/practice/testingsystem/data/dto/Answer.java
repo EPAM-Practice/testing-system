@@ -1,30 +1,21 @@
 package com.epam.practice.testingsystem.data.dto;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Answer {
+    @Builder.Default
+    private int id = 0;
 
-    @Getter
-    @Setter
-    private int id;
-
-    @Getter
-    @Setter
     @NonNull
     private String answer;
 
-    @Getter
-    @Setter
     private Boolean isCorrect;
-
-    public Answer() {
-    }
-
-    public Answer(int id, @NonNull String answer, Boolean isCorrect) {
-        this.id = id;
-        this.answer = answer;
-        this.isCorrect = isCorrect;
-    }
 }

@@ -1,18 +1,27 @@
 package com.epam.practice.testingsystem.data.dao;
 
-import com.epam.practice.testingsystem.data.dto.*;
+import com.epam.practice.testingsystem.data.dto.Answer;
+import com.epam.practice.testingsystem.data.dto.Attempt;
+import com.epam.practice.testingsystem.data.dto.Deadline;
+import com.epam.practice.testingsystem.data.dto.Question;
+import com.epam.practice.testingsystem.data.dto.Test;
+import com.epam.practice.testingsystem.data.dto.UniversityGroup;
+import com.epam.practice.testingsystem.data.dto.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
 class DataParse {
+    private static final String dataStructureExceptionMessage = "Incorrect data structure";
+
     static User getUser(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             int id = rs.getInt("id");
             String name = rs.getString("user_name");
@@ -22,12 +31,13 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
     static UniversityGroup getUniversityGroup(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             UniversityGroup universityGroup = new UniversityGroup();
             int id = rs.getInt("id");
@@ -36,14 +46,15 @@ class DataParse {
             universityGroup.setName(name);
             return universityGroup;
         }
-            catch (SQLException e) {
+        catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
     static Answer getAnswer(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             int id = rs.getInt("id");
             String answer = rs.getString("answer");
@@ -54,55 +65,48 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
     static Question getQuestion(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             int id = rs.getInt("id");
             String question = rs.getString("question");
             int score = rs.getInt("score");
-            List<Answer> answers = new AnswerDAO().findAll(id);
+            List<Answer> answers = new AnswerDAO().findAllByQuestionId(id);
             return new Question(id, question, score, answers);
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
     static Attempt getAttempt(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
-            Attempt attempt = new Attempt();
             int id = rs.getInt("id");
             int testId = rs.getInt("test_id");
             int userId = rs.getInt("user_id");
             int score = rs.getInt("score");
-            Time datetime = rs.getTime("datetime");
-            attempt.setId(id);
-            attempt.setDateTime(datetime);
-            attempt.setScore(score);
-
-            ITestDAO testDAO = new TestDAO();
-            Test test = testDAO.find(testId);
-            attempt.setTest(test);
-
-            IUserDAO userDAO = new UserDAO();
-            User user = userDAO.find(userId);
-            attempt.setUser(user);
-            return attempt;
+            LocalTime datetime = rs.getTime("datetime").toLocalTime();
+            Test test = DAOFactory.getTestDAO().find(testId);
+            User user = DAOFactory.getUserDAO().find(userId);
+            return new Attempt(id, user, test, score, datetime);
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
     static Test getTest(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             int id = rs.getInt("id");
             String name = rs.getString("name");
@@ -113,12 +117,13 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
     static Deadline getDeadline(ResultSet rs) {
-        assert rs != null;
+        if (rs == null)
+            throw new IllegalArgumentException();
         try {
             int testId = rs.getInt("test_id");
             Test test = DAOFactory.getTestDAO().find(testId);
@@ -129,13 +134,13 @@ class DataParse {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dataStructureExceptionMessage);
         }
     }
 
-    static <T> List<T> getList(ResultSet rs, Function<ResultSet, T> handler)
-    {
-        assert rs != null;
+    static <T> List<T> getList(ResultSet rs, Function<ResultSet, T> handler) {
+        if (rs == null)
+            throw new IllegalArgumentException();
         List<T> list = new ArrayList<>();
         try {
             while (rs.next()) {

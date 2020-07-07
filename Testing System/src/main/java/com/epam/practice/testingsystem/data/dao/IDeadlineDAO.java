@@ -10,6 +10,6 @@ import java.util.List;
 public interface IDeadlineDAO {
     void setDeadline(Test test, UniversityGroup group, LocalDate date);
     Deadline getDeadline(Test test, UniversityGroup group);
-    List<Deadline> getDeadlines(Test test);
-    List<Deadline> getDeadlines(UniversityGroup universityGroup);
+    List<Deadline> getDeadlinesByTest(Test test);
+    List<Deadline> getDeadlinesByUniversityGroup(UniversityGroup universityGroup);
 }

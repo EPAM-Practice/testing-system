@@ -1,36 +1,24 @@
 package com.epam.practice.testingsystem.data.dto;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
-    @Getter
-    @Setter
-    private int id;
+    @Builder.Default
+    private int id = 0;
 
-    @Getter
-    @Setter
     @NonNull
     private String name;
 
-    @Getter
-    @Setter
     @NonNull
     private String passwordHash;
 
-    @Getter
-    @Setter
     private int roleId;
-
-    public User() {
-    }
-
-    public User(int id, @NonNull String name, @NonNull String passwordHash, int roleId) {
-        this.id = id;
-        this.name = name;
-        this.passwordHash = passwordHash;
-        this.roleId = roleId;
-    }
-
 }

@@ -1,24 +1,19 @@
 package com.epam.practice.testingsystem.data.dto;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UniversityGroup {
-    @Getter
-    @Setter
-    private int id;
+    @Builder.Default
+    private int id = 0;
 
-    @Getter
-    @Setter
     @NonNull
     private String name;
-
-    public UniversityGroup() {
-    }
-
-    public UniversityGroup(int id, @NonNull String name) {
-        this.id = id;
-        this.name = name;
-    }
 }

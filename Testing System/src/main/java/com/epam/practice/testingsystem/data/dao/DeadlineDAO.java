@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-class DeadlineDAO implements IDeadlineDAO {
+class DeadlineDAO extends DbAccess implements IDeadlineDAO {
     @Override
     public void setDeadline(Test test, UniversityGroup group, LocalDate date) {
         if (getDeadline(test, group) == null)
@@ -24,7 +24,6 @@ class DeadlineDAO implements IDeadlineDAO {
     private void insertDeadline(Test test, UniversityGroup group, LocalDate date)
     {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("INSERT INTO test_deadline(test_id, university_group_id, deadline) VALUES (?, ?, ?)");
             statement.setInt(1, test.getId());
             statement.setInt(2, group.getId());
@@ -33,13 +32,13 @@ class DeadlineDAO implements IDeadlineDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     private void updateDeadline(Test test, UniversityGroup group, LocalDate date)
     {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("UPDATE test_deadline SET deadline = ? WHERE test_id = ? AND university_group_id = ?");
             statement.setObject(1, date);
             statement.setInt(2, test.getId());
@@ -48,13 +47,13 @@ class DeadlineDAO implements IDeadlineDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public Deadline getDeadline(Test test, UniversityGroup group) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM test_deadline WHERE test_id = ? AND university_group_id = ?");
             statement.setInt(1, test.getId());
             statement.setInt(2, group.getId());
@@ -66,14 +65,13 @@ class DeadlineDAO implements IDeadlineDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
-    public List<Deadline> getDeadlines(Test test) {
+    public List<Deadline> getDeadlinesByTest(Test test) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM test_deadline WHERE test_id = ?");
             statement.setInt(1, test.getId());
             ResultSet rs = statement.executeQuery();
@@ -81,14 +79,13 @@ class DeadlineDAO implements IDeadlineDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
-    public List<Deadline> getDeadlines(UniversityGroup universityGroup) {
+    public List<Deadline> getDeadlinesByUniversityGroup(UniversityGroup universityGroup) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM test_deadline WHERE university_group_id = ?");
             statement.setInt(1, universityGroup.getId());
             ResultSet rs = statement.executeQuery();
@@ -96,7 +93,11 @@ class DeadlineDAO implements IDeadlineDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
+    }
+
+    public void removeDeadline(Test test, UniversityGroup group) {
+        delete2Arg("test_deadline", "test_id", test.getId(), "university_group_id", group.getId());
     }
 }

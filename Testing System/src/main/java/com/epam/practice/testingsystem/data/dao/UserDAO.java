@@ -14,7 +14,6 @@ class UserDAO extends DbAccess implements IUserDAO {
     @Override
     public int add(User data) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("INSERT INTO user(user_name, password_hash, role_id) VALUES (?, ?, ?)");
             statement.setString(1, data.getName());
             statement.setString(2, data.getPasswordHash());
@@ -24,14 +23,13 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return -1;
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public User find(int id) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE id = ?");
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
@@ -42,28 +40,26 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public List<User> findAll() {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM user ORDER BY id");
             ResultSet rs = statement.executeQuery();
             return DataParse.getList(rs, DataParse::getUser);
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public void update(User data) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("UPDATE user SET password_hash = ?, role_id = ? WHERE id = ?");
             statement.setString(1, data.getPasswordHash());
             statement.setInt(2, data.getRoleId());
@@ -71,31 +67,23 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
-    public void delete(int id) {
-        try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM user WHERE id = ?");
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteById(int id) {
+        delete1Arg("user", "id", id);
     }
 
     @Override
     public void delete(User data) {
-        delete(data.getId());
+        deleteById(data.getId());
     }
 
     @Override
     public void assignUniversityGroup(User user, UniversityGroup group) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("INSERT INTO user_university_group(user_id, university_group_id) VALUES (?, ?)");
             statement.setInt(1, user.getId());
             statement.setInt(2, group.getId());
@@ -103,13 +91,13 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public void removeUniversityGroup(User user, UniversityGroup group) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("DELETE FROM user_university_group WHERE user_id = ? AND university_group_id = ?");
             statement.setInt(1, user.getId());
             statement.setInt(2, group.getId());
@@ -117,13 +105,13 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public List<UniversityGroup> findAssignedUniversityGroups(User user) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT ug.id, ug.name " +
                     "FROM user_university_group uug " +
                     "INNER JOIN university_group ug ON uug.university_group_id = ug.id " +
@@ -136,7 +124,7 @@ class UserDAO extends DbAccess implements IUserDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 }

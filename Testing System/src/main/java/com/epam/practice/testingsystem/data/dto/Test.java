@@ -1,24 +1,18 @@
 package com.epam.practice.testingsystem.data.dto;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Test {
-    @Getter
-    @Setter
-    private int id;
+    private int id = 0;
 
-    @Getter
-    @Setter
     @NonNull
     private String name;
-
-    public Test() {
-    }
-
-    public Test(int id, @NonNull String name) {
-        this.id = id;
-        this.name = name;
-    }
 }

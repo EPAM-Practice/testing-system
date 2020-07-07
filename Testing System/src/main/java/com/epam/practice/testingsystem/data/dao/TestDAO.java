@@ -13,7 +13,6 @@ class TestDAO extends DbAccess implements ITestDAO {
     @Override
     public int add(Test data) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("INSERT INTO test(name) VALUES (?)");
             statement.setString(1, data.getName());
             statement.executeUpdate();
@@ -21,47 +20,43 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return -1;
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public Test find(int id) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM test WHERE id = ?");
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
                 return DataParse.getTest(rs);
-            }
             else
                 return null;
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public List<Test> findAll() {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM test ORDER BY id");
             ResultSet rs = statement.executeQuery();
             return DataParse.getList(rs, DataParse::getTest);
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
     public void update(Test data) {
         try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
             PreparedStatement statement = connection.prepareStatement("UPDATE test SET name = ? WHERE id = ?");
             statement.setString(1, data.getName());
             statement.setInt(2, data.getId());
@@ -69,24 +64,17 @@ class TestDAO extends DbAccess implements ITestDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
 
     @Override
-    public void delete(int id) {
-        try (Connection connection = DataConnection.getConnection()) {
-            assert connection != null;
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM test WHERE id = ?");
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteById(int id) {
+        delete1Arg("test", "id", id);
     }
 
     @Override
     public void delete(Test data) {
-        delete(data.getId());
+        deleteById(data.getId());
     }
 }
