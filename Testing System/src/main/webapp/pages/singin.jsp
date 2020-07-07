@@ -7,8 +7,8 @@
 <body>
 <form method="post">
     <div class="container">
-        <h1>Register</h1>
-        <p>Please fill in this form to create an account.</p>
+        <h1>Sing in</h1>
+        <p>Please fill in this form to sing in account.</p>
         <hr>
 
         <label for="username"><b>Username</b></label>
@@ -17,16 +17,9 @@
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required>
 
-        <label for="psw-repeat"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-        <hr>
-
-        <button type="submit" class="registerbtn">Register</button>
+        <button type="submit" class="singinbtn"><a href="/profile_student">Sing in</a></button>
     </div>
 
-    <div class="container signin">
-        <p>Already have an account? <a href="/singin">Sign in</a>.</p>
-    </div>
 </form>
 </body>
 </html>

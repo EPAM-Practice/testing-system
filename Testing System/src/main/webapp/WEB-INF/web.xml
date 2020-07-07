@@ -13,4 +13,54 @@
         <servlet-name>add</servlet-name>
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>profile_student</servlet-name>
+        <servlet-class>app.servlets.profile_student_Servlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>profile_student</servlet-name>
+        <url-pattern>/profile_student</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>singin</servlet-name>
+        <servlet-class>app.servlets.SingInServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>singin</servlet-name>
+        <url-pattern>/singin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>test</servlet-name>
+        <servlet-class>app.servlets.TestServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>test</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>question</servlet-name>
+        <servlet-class>app.servlets.QuestionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>question</servlet-name>
+        <url-pattern>/question</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>test_score</servlet-name>
+        <servlet-class>app.servlets.TestScoreServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>test_score</servlet-name>
+        <url-pattern>/test_score</url-pattern>
+    </servlet-mapping>
 </web-app>
