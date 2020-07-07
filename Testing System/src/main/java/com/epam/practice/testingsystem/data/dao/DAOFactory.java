@@ -1,6 +1,10 @@
 package com.epam.practice.testingsystem.data.dao;
 
 public class DAOFactory {
+    public static IAnswerDAO getAnswerDAO() {
+        return new AnswerDAO();
+    }
+
     public static IQuestionDAO getQuestionDAO() {
         return new QuestionDAO();
     }
