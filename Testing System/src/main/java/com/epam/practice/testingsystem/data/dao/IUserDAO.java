@@ -9,4 +9,5 @@ public interface IUserDAO extends CRUDDAO<User>, MultipleFindable<User> {
     void assignUniversityGroup(User user, UniversityGroup group);
     void removeUniversityGroup(User user, UniversityGroup group);
     List<UniversityGroup> findAssignedUniversityGroups(User user);
+    User findUserByCred(String username, String passwordHash);
 }

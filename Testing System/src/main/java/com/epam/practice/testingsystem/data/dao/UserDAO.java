@@ -127,4 +127,22 @@ class UserDAO extends DbAccess implements IUserDAO {
             throw new RuntimeException(dbAccessExceptionMessage);
         }
     }
+
+    @Override
+    public User findUserByCred(String username, String passwordHash) {
+        try (Connection connection = DataConnection.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE user_name = ? AND password_hash = ?");
+            statement.setString(1, username);
+            statement.setString(2, passwordHash);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next())
+                return DataParse.getUser(rs);
+            else
+                return null;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(dbAccessExceptionMessage);
+        }
+    }
 }
