@@ -48,7 +48,7 @@ class QuestionDAOTest {
 
     @Test
     void findAll() {
-        List<Question> questions = DAOFactory.getQuestionDAO().findAllByTest(1);
+        List<Question> questions = DAOFactory.getQuestionDAO().findAllByTestId(1);
         assertEquals(4, questions.size());
     }
 
@@ -71,7 +71,7 @@ class QuestionDAOTest {
     @Test
     void delete() {
         IQuestionDAO questionDAO = DAOFactory.getQuestionDAO();
-        questionDAO.delete(22);
+        questionDAO.deleteById(22);
         assertNull(questionDAO.find(22));
     }
 

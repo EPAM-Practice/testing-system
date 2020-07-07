@@ -69,12 +69,12 @@ class TestDAO extends DbAccess implements ITestDAO {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         delete1Arg("test", "id", id);
     }
 
     @Override
     public void delete(Test data) {
-        delete(data.getId());
+        deleteById(data.getId());
     }
 }

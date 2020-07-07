@@ -43,7 +43,7 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
     }
 
     @Override
-    public List<Answer> findAllByQuestion(int questionId) {
+    public List<Answer> findAllByQuestionId(int questionId) {
         try (Connection connection = DataConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT id, answer, is_correct " +
                     "FROM test_answer ta " +
@@ -62,7 +62,7 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
 
     @Override
     public List<Answer> findAllByQuestion(Question question) {
-        return findAllByQuestion(question.getId());
+        return findAllByQuestionId(question.getId());
     }
 
     @Override
@@ -80,17 +80,17 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         delete1Arg("test_answer", "id", id);
     }
 
     @Override
     public void delete(Answer data) {
-        delete(data.getId());
+        deleteById(data.getId());
     }
 
     @Override
-    public void link(Question question, Answer answer) {
+    public void linkToQuestion(Question question, Answer answer) {
         try (Connection connection = DataConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO test_question_answer(question_id, answer_id, is_correct) VALUES (?, ?, ?)");
             statement.setInt(1, question.getId());
@@ -105,7 +105,7 @@ class AnswerDAO extends DbAccess implements IAnswerDAO {
     }
 
     @Override
-    public void unlink(Question question, Answer answer) {
+    public void unlinkFromQuestion(Question question, Answer answer) {
         try (Connection connection = DataConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("DELETE FROM test_question_answer WHERE question_id = ? AND answer_id = ?");
             statement.setInt(1, question.getId());

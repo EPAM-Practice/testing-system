@@ -72,13 +72,13 @@ class UserDAO extends DbAccess implements IUserDAO {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         delete1Arg("user", "id", id);
     }
 
     @Override
     public void delete(User data) {
-        delete(data.getId());
+        deleteById(data.getId());
     }
 
     @Override

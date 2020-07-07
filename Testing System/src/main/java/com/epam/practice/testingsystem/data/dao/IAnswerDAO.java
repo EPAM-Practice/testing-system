@@ -6,8 +6,8 @@ import com.epam.practice.testingsystem.data.dto.Question;
 import java.util.List;
 
 interface IAnswerDAO extends CRUDDAO<Answer> {
-    List<Answer> findAllByQuestion(int questionId);
+    List<Answer> findAllByQuestionId(int questionId);
     List<Answer> findAllByQuestion(Question question);
-    void link(Question question, Answer answer);
-    void unlink(Question question, Answer answer);
+    void linkToQuestion(Question question, Answer answer);
+    void unlinkFromQuestion(Question question, Answer answer);
 }

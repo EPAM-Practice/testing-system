@@ -70,12 +70,12 @@ class UniversityGroupDAO extends DbAccess implements IUniversityGroupDAO {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         delete1Arg("university_group", "id", id);
     }
 
     @Override
     public void delete(UniversityGroup data) {
-        delete(data.getId());
+        deleteById(data.getId());
     }
 }

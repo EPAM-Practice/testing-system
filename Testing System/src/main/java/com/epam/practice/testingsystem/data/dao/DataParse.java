@@ -76,7 +76,7 @@ class DataParse {
             int id = rs.getInt("id");
             String question = rs.getString("question");
             int score = rs.getInt("score");
-            List<Answer> answers = new AnswerDAO().findAllByQuestion(id);
+            List<Answer> answers = new AnswerDAO().findAllByQuestionId(id);
             return new Question(id, question, score, answers);
         }
         catch (SQLException e) {
