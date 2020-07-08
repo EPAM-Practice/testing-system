@@ -9,23 +9,25 @@
 </head>
 <body>
     <jsp:include page="header.jsp" />
+    <div class="w3-container">
     <h1>Hello, ${user.name}!</h1>
-    <section>
-        <p>Attempts:</p>
-        <table class="w3-table w3-bordered">
-            <tr>
-                <th>Test</th>
-                <th>Score</th>
-                <th>Time</th>
-            </tr>
-            <c:forEach var="attempt" items="${requestScope.attempts}">
-            <tr>
-                <td>${attempt.test.name}</td>
-                <td>${attempt.score}</td>
-                <td>${attempt.dateTime}</td>
-            </tr>
-            </c:forEach>
-        </table>
-    </section>
+        <section>
+            <p>Attempts:</p>
+            <table class="w3-table w3-bordered">
+                <tr>
+                    <th>Test</th>
+                    <th>Score</th>
+                    <th>Time</th>
+                </tr>
+                <c:forEach var="attempt" items="${requestScope.attempts}">
+                <tr>
+                    <td>${attempt.test.name}</td>
+                    <td>${attempt.score}</td>
+                    <td>${attempt.dateTime}</td>
+                </tr>
+                </c:forEach>
+            </table>
+        </section>
+    </div>
 </body>
 </html>
