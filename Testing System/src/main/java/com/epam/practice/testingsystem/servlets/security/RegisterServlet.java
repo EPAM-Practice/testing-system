@@ -2,6 +2,7 @@ package com.epam.practice.testingsystem.servlets.security;
 
 import com.epam.practice.testingsystem.data.dao.DAOFactory;
 import com.epam.practice.testingsystem.data.dto.User;
+import com.epam.practice.testingsystem.data.dto.UserRole;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,10 +26,11 @@ public class RegisterServlet extends HttpServlet {
         }
 
         try {
+            UserRole role = DAOFactory.getUserRoleDAO().find(1);
             User user = User.builder()
                     .name(login)
                     .passwordHash(HashCalculator.getPasswordHash(password))
-                    .roleId(1)
+                    .role(role)
                     .build();
             DAOFactory.getUserDAO().add(user);
             HttpSession session = req.getSession();
