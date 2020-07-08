@@ -7,6 +7,7 @@ import com.epam.practice.testingsystem.data.dto.Question;
 import com.epam.practice.testingsystem.data.dto.Test;
 import com.epam.practice.testingsystem.data.dto.UniversityGroup;
 import com.epam.practice.testingsystem.data.dto.User;
+import com.epam.practice.testingsystem.data.dto.UserRole;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +28,8 @@ class DataParse {
             String name = rs.getString("user_name");
             String pass = rs.getString("password_hash");
             int roleId = rs.getInt("role_id");
-            return new User(id, name, pass, roleId);
+            UserRole role = DAOFactory.getUserRoleDAO().find(roleId);
+            return new User(id, name, pass, role);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -131,6 +133,21 @@ class DataParse {
             UniversityGroup universityGroup = DAOFactory.getUniversityGroupDAO().find(universityGroupId);
             LocalDate deadline = rs.getDate("deadline").toLocalDate();
             return new Deadline(test, universityGroup, deadline);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(dataStructureExceptionMessage);
+        }
+    }
+
+    static UserRole getUserRole(ResultSet rs) {
+        if (rs == null)
+            throw new IllegalArgumentException();
+        try {
+            int roleId = rs.getInt("id");
+            String name = rs.getString("role_name");
+            boolean checkDeadlines = rs.getBoolean("check_deadlines");
+            return new UserRole(roleId, name, checkDeadlines);
         }
         catch (SQLException e) {
             e.printStackTrace();

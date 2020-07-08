@@ -17,7 +17,7 @@ class UserDAO extends DbAccess implements IUserDAO {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO user(user_name, password_hash, role_id) VALUES (?, ?, ?)");
             statement.setString(1, data.getName());
             statement.setString(2, data.getPasswordHash());
-            statement.setInt(3, data.getRoleId());
+            statement.setInt(3, data.getRole().getId());
             statement.executeUpdate();
             return getLastInsertedId(connection);
         }
@@ -62,7 +62,7 @@ class UserDAO extends DbAccess implements IUserDAO {
         try (Connection connection = DataConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE user SET password_hash = ?, role_id = ? WHERE id = ?");
             statement.setString(1, data.getPasswordHash());
-            statement.setInt(2, data.getRoleId());
+            statement.setInt(2, data.getRole().getId());
             statement.executeUpdate();
         }
         catch (SQLException e) {
