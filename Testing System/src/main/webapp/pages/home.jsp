@@ -10,5 +10,24 @@
 <body>
     <jsp:include page="header.jsp" />
     <h1>Hello, ${user.name}!</h1>
+    <section class="tests">
+        <div class="container">
+            <p> Пройденные тесты:</p>
+            <table>
+                <tr>
+                    <td>Тест</td>
+                    <td>Процент выполнения</td>
+                </tr>
+                <tr>
+                    <td>Тест 3</td>
+                    <td>66%</td>
+                </tr>
+                <tr>
+                    <td>Тест 4</td>
+                    <td>87%</td>
+                </tr>
+            </table>
+        </div>
+    </section>
 </body>
 </html>
