@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestServlet extends HttpServlet {
     @Override
@@ -29,8 +30,19 @@ public class TestServlet extends HttpServlet {
         }
 
         User user = (User) userObj;
-        List<UniversityGroup> groups = DAOFactory.getUserDAO().findAssignedUniversityGroups(user);
+        List<ViewGroup> viewGroups;
+        if (user.getRole().getId() == 3)
+            viewGroups = getViewGroupsAdmin();
+        else {
+            List<UniversityGroup> groups = DAOFactory.getUserDAO().findAssignedUniversityGroups(user);
+            viewGroups = getViewGroups(groups);
+        }
 
+        req.setAttribute("view_groups", viewGroups);
+        req.getRequestDispatcher("pages/test_list.jsp").forward(req, resp);
+    }
+
+    private List<ViewGroup> getViewGroups(List<UniversityGroup> groups) {
         List<ViewGroup> viewGroups = new ArrayList<>();
         groups.forEach(group -> {
             List<ViewTest> tests = new ArrayList<>();
@@ -47,13 +59,30 @@ public class TestServlet extends HttpServlet {
             });
             ViewGroup viewGroup = ViewGroup
                     .builder()
-                    .universityGroup(group)
+                    .group(group.getName())
                     .tests(tests)
                     .build();
             viewGroups.add(viewGroup);
         });
+        return viewGroups;
+    }
 
-        req.setAttribute("view_groups", viewGroups);
-        req.getRequestDispatcher("pages/test_list.jsp").forward(req, resp);
+    private List<ViewGroup> getViewGroupsAdmin() {
+        List<ViewGroup> viewGroups = new ArrayList<>();
+        List<ViewTest> tests = DAOFactory
+                .getTestDAO()
+                .findAll()
+                .stream()
+                .map(test -> ViewTest.builder()
+                                .test(test)
+                                .build())
+                .collect(Collectors.toList());
+        ViewGroup general = ViewGroup
+                .builder()
+                .group("General")
+                .tests(tests)
+                .build();
+        viewGroups.add(general);
+        return viewGroups;
     }
 }

@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 </head>
 <body>
+    <jsp:include page="header/header.jsp" />
     <div class="w3-container">
         <h2>Available tests</h2>
         <c:forEach var="view_group" items="${view_groups}">
             <div class="w3-card-4" style="width:75%;">
                 <header class="w3-container w3-flat-wisteria">
-                    <h2>${view_group.universityGroup.name}</h2>
+                    <h2>${view_group.group}</h2>
                 </header>
 
                 <div class="w3-container">
@@ -21,7 +22,7 @@
                         <c:forEach var="view_test" items="${view_group.tests}">
                             <li>
                                 <h3><a href="<c:url value="/solve?id=${view_test.test.id}" />">${view_test.test.name}</a></h3>
-                                <i>until ${view_test.deadline}</i>
+                                <c:if test="${view_test.deadline != null}"><i>until ${view_test.deadline}</i></c:if>
                             </li>
                         </c:forEach>
                     </ul>
