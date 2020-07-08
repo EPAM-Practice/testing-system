@@ -13,9 +13,6 @@ import java.io.IOException;
 
 @WebServlet("/attempts")
 public class AttemptServlet extends HttpServlet {
-    private void doGetList(HttpServletRequest req, HttpServletResponse resp) {
-    }
-
     private void doGetItem(int id, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Attempt attempt = DAOFactory.getAttemptDAO().find(id);
         req.setAttribute("attempt", attempt);
@@ -26,9 +23,7 @@ public class AttemptServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        if (id == null)
-            doGetList(req, resp);
-        else
+        if (id != null)
             doGetItem(Integer.parseInt(id), req, resp);
     }
 }
