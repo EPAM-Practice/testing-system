@@ -4,14 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>My super project!</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 </head>
 <body>
-<!-- header -->
-<div>
+    <jsp:include page="/pages/header.jsp" />
     <h1>Super app!</h1>
-</div>
-<a href="<c:url value="/login" />">Login</a>
-<a href="<c:url value="/register" />">Register</a>
-
 </body>
 </html>
