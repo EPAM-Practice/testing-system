@@ -37,13 +37,17 @@ public class SolveServlet extends HttpServlet {
             LocalDate date = LocalDate.now();
             LocalDate deadline = DAOFactory.getDeadlineDAO().getDeadline(test, group).getDeadline();
             req.setAttribute("test", test);
-            if (date.compareTo(deadline) > 0)
+            if (date.compareTo(deadline) > 0) {
                 req.setAttribute("expired", true);
-            else
-                req.setAttribute("require_confirm", true);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("pages/solve-prepare.jsp");
-            requestDispatcher.forward(req, resp);
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("pages/solve-prepare.jsp");
+                requestDispatcher.forward(req, resp);
+                return;
+            }
         }
+
+        req.setAttribute("require_confirm", true);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("pages/solve-prepare.jsp");
+        requestDispatcher.forward(req, resp);
     }
 
     private void doGetConfirm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -80,12 +84,12 @@ public class SolveServlet extends HttpServlet {
             return;
         }
 
-        String confirm = req.getParameter("confirm");
-
-        if (Objects.equals(confirm, "1"))
-            doGetConfirm(req, resp);
-        else if (session.getAttribute("test") == null)
+        if (session.getAttribute("test") == null)
             doGetStart(req, resp);
+        else if (Objects.equals(req.getParameter("confirm"), "1"))
+            doGetConfirm(req, resp);
+        else if (Objects.equals(req.getParameter("stop"), "1"))
+            check(req, resp);
         else
             doGetQuestion(req, resp);
     }
@@ -126,7 +130,7 @@ public class SolveServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
         int score = 0;
-        for (int i = 0; i < questions.size(); i++) {
+        for (int i = 0; i < Math.min(questions.size(), answers.size()); i++) {
             Set<Integer> answerSet = questions
                     .get(i)
                     .getAnswers()
@@ -153,6 +157,11 @@ public class SolveServlet extends HttpServlet {
                 .user(user)
                 .build();
         int attemptId = DAOFactory.getAttemptDAO().add(attempt);
+
+        session.setAttribute("test", null);
+        session.setAttribute("questions", null);
+        session.setAttribute("cur_question_number", null);
+        session.setAttribute("answers", null);
 
         resp.sendRedirect(String.format("%s/attempts?id=%d", getServletContext().getContextPath(), attemptId));
     }
