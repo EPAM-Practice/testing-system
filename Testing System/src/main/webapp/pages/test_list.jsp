@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="view_groups" scope="request" type="java.util.List"/>
 <html>
 <head>
@@ -22,7 +23,10 @@
                         <c:forEach var="view_test" items="${view_group.tests}">
                             <li>
                                 <h3><a href="<c:url value="/solve?id=${view_test.test.id}" />">${view_test.test.name}</a></h3>
-                                <c:if test="${view_test.deadline != null}"><i>until ${view_test.deadline}</i></c:if>
+                                <c:if test="${view_test.deadline != null}">
+                                    <fmt:parseDate value="${view_test.deadline}" pattern="yyyy-MM-dd" var="parsedDate" type="date"/>
+                                    <i>until <fmt:formatDate value="${parsedDate}" pattern="dd.MM.yyyy" /></i>
+                                </c:if>
                             </li>
                         </c:forEach>
                     </ul>
