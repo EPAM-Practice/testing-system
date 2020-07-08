@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class DataConnection {
     public static Connection getConnection() throws SQLException {
+        DriverManager.registerDriver(new org.mariadb.jdbc.Driver());
         String url = System.getenv("DB_URL");
         String user = System.getenv("DB_USER");
         String password = System.getenv("DB_PASSWORD");

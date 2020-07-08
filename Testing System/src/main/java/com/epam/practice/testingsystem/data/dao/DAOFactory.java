@@ -28,4 +28,8 @@ public class DAOFactory {
     public static IDeadlineDAO getDeadlineDAO() {
         return new DeadlineDAO();
     }
+
+    public static IUserRoleDAO getUserRoleDAO() {
+        return new UserRoleDAO();
+    }
 }

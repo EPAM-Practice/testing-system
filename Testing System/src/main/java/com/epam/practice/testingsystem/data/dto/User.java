@@ -20,5 +20,5 @@ public class User {
     @NonNull
     private String passwordHash;
 
-    private int roleId;
+    private UserRole role;
 }
