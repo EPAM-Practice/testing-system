@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 </head>
 <body>
-    <div class="w3-panel w3-flat-wisteria">
+    <div class="w3-container w3-flat-wisteria">
         <h2>${sessionScope.test.name}</h2>
         <p>Question ${sessionScope.cur_question_number + 1} / ${total}</p>
     </div>
