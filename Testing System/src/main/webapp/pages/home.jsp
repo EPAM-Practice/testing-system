@@ -11,23 +11,21 @@
     <jsp:include page="header.jsp" />
     <h1>Hello, ${user.name}!</h1>
     <section>
-
-            <p> Пройденные тесты:</p>
-            <table class="w3-table w3-bordered">
-                <tr>
-                    <th>Тест</th>
-                    <th>Процент выполнения</th>
-                </tr>
-                <tr>
-                    <td>Тест 3</td>
-                    <td>66%</td>
-                </tr>
-                <tr>
-                    <td>Тест 4</td>
-                    <td>87%</td>
-                </tr>
-            </table>
-
+        <p>Attempts:</p>
+        <table class="w3-table w3-bordered">
+            <tr>
+                <th>Test</th>
+                <th>Score</th>
+                <th>Time</th>
+            </tr>
+            <c:forEach var="attempt" items="${requestScope.attempts}">
+            <tr>
+                <td>${attempt.test.name}</td>
+                <td>${attempt.score}</td>
+                <td>${attempt.dateTime}</td>
+            </tr>
+            </c:forEach>
+        </table>
     </section>
 </body>
 </html>
