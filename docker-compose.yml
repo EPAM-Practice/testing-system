@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+    db:
+        build: database/
+        # For debug only
+        ports:
+            - 3306:3306
+        networks:
+            - ts-net
+        environment:
+            # Specify MySQL password here
+            # - MYSQL_ROOT_PASSWORD=<some_password>
+            - TZ=Europe/Moscow
+
+    testingsystem:
+        build: Testing System/
+        ports:
+            - 8080:8080
+        networks:
+            - ts-net
+        environment:
+            - DB_URL=jdbc:mariadb://db:3306/testing_system
+            - DB_USER=root
+            # Specify MySQL password here
+            # - DB_PASSWORD=<some_password>
+            - TZ=Europe/Moscow
+
+networks:
+    ts-net:
