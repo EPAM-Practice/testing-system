@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -154,7 +154,7 @@ public class SolveServlet extends HttpServlet {
         Attempt attempt = Attempt
                 .builder()
                 .test(test)
-                .dateTime(LocalTime.now())
+                .dateTime(LocalDateTime.now())
                 .score(score)
                 .user(user)
                 .build();
