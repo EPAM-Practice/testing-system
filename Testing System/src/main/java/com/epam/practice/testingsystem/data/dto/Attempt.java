@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -25,5 +25,5 @@ public class Attempt {
     private int score;
 
     @NonNull
-    private LocalTime dateTime;
+    private LocalDateTime dateTime;
 }

@@ -12,7 +12,7 @@ import com.epam.practice.testingsystem.data.dto.UserRole;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -95,7 +95,7 @@ class DataParse {
             int testId = rs.getInt("test_id");
             int userId = rs.getInt("user_id");
             int score = rs.getInt("score");
-            LocalTime datetime = rs.getTime("datetime").toLocalTime();
+            LocalDateTime datetime = rs.getTimestamp("datetime").toLocalDateTime();
             Test test = DAOFactory.getTestDAO().find(testId);
             User user = DAOFactory.getUserDAO().find(userId);
             return new Attempt(id, user, test, score, datetime);
