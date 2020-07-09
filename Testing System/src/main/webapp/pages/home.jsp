@@ -10,8 +10,17 @@
 </head>
 <body>
     <jsp:include page="header.jsp" />
-    <div class="w3-container">
-    <h1>Hello, ${user.name}!</h1>
+    <div class="w3-container margin-top">
+        <div class="w3-row-padding">
+            <div class="w3-third">
+                <c:choose>
+                    <c:when test = "${user.role.id == 1}"><img src="img/avatar_student.png" class="w3-bar-item w3-circle w3-hide-small" style="width:135px"></c:when>
+                    <c:when test = "${user.role.id == 2}"><img src="img/avatar_teacher.png" class="w3-bar-item w3-circle w3-hide-small" style="width:135px"></c:when>
+                    <c:when test = "${user.role.id == 3}"><img src="img/avatar_admin.png" class="w3-bar-item w3-circle w3-hide-small" style="width:135px"></c:when>
+                </c:choose>
+            </div>
+            <h1>Hello, ${user.name}!</h1>
+        </div>
         <section>
             <p>Attempts:</p>
             <table class="w3-table w3-bordered">
