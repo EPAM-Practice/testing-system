@@ -63,6 +63,7 @@ class UserDAO extends DbAccess implements IUserDAO {
             PreparedStatement statement = connection.prepareStatement("UPDATE user SET password_hash = ?, role_id = ? WHERE id = ?");
             statement.setString(1, data.getPasswordHash());
             statement.setInt(2, data.getRole().getId());
+            statement.setInt(3, data.getId());
             statement.executeUpdate();
         }
         catch (SQLException e) {
