@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Attempt #${requestScope.attempt.id}</title>
@@ -34,7 +35,9 @@
                 </tr>
                 <tr>
                     <th class="w3-left-align">Time</th>
-                    <td class="w3-padding-large">${requestScope.attempt.dateTime}</td>
+                    <fmt:parseDate value="${requestScope.attempt.dateTime}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="date"/>
+                    <fmt:formatDate value="${parsedDate}" var="dateTime" type="both" dateStyle="medium" timeStyle="short"/>
+                    <td class="w3-padding-large">${dateTime}</td>
                 </tr>
                 <tr>
                     <th class="w3-left-align">Score</th>
