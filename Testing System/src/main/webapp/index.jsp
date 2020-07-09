@@ -3,12 +3,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>My super project!</title>
+    <title>Testing System</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 </head>
 <body>
     <jsp:include page="/pages/header.jsp" />
-    <h1>Super app!</h1>
+    <div class="w3-container">
+        <h1>Testing System</h1>
+        <p>This is a web application that provides a platform for teachers and students to prepare and pass any educational tests.</p>
+    </div>
 </body>
 </html>
