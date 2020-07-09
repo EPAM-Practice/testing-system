@@ -20,14 +20,16 @@ public class UserServlet extends HttpServlet {
         if (userFilter(req, resp)) return;
 
         List<User> users = DAOFactory.getUserDAO().findAll();
+        List<UserRole> roles = DAOFactory.getUserRoleDAO().findAll();
         req.setAttribute("users", users);
+        req.setAttribute("roles", roles);
         req.getRequestDispatcher("pages/users.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (userFilter(req, resp)) return;
-        
+
         int userId = Integer.parseInt(req.getParameter("user_id"));
         int roleId = Integer.parseInt(req.getParameter("user_role"));
         User user = DAOFactory.getUserDAO().find(userId);
