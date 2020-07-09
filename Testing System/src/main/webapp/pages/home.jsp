@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="user" scope="session" type="com.epam.practice.testingsystem.data.dto.User"/>
 <html>
 <head>
@@ -23,7 +24,9 @@
                 <tr>
                     <td>${attempt.test.name}</td>
                     <td>${attempt.score}</td>
-                    <td>${attempt.dateTime}</td>
+                    <fmt:parseDate value="${attempt.dateTime}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="date"/>
+                    <fmt:formatDate value="${parsedDate}" var="dateTime" type="both" dateStyle="medium" timeStyle="short"/>
+                    <td>${dateTime}</td>
                 </tr>
                 </c:forEach>
             </table>
