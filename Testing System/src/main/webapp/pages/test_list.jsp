@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 </head>
 <body>
-    <jsp:include page="header/header.jsp" />
     <div class="w3-container">
         <h2>Available tests</h2>
         <c:forEach var="view_group" items="${view_groups}">

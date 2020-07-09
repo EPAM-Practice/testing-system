@@ -84,10 +84,10 @@ public class SolveServlet extends HttpServlet {
             return;
         }
 
-        if (session.getAttribute("test") == null)
-            doGetStart(req, resp);
-        else if (Objects.equals(req.getParameter("confirm"), "1"))
+         if (Objects.equals(req.getParameter("confirm"), "1"))
             doGetConfirm(req, resp);
+        else if (session.getAttribute("test") == null)
+             doGetStart(req, resp);
         else if (Objects.equals(req.getParameter("stop"), "1"))
             check(req, resp);
         else
