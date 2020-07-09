@@ -45,9 +45,13 @@ public class SolveServlet extends HttpServlet {
             }
         }
 
-        req.setAttribute("require_confirm", true);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("pages/solve-prepare.jsp");
-        requestDispatcher.forward(req, resp);
+        if (Objects.equals(req.getParameter("confirm"), "1"))
+            doGetConfirm(req, resp);
+        else {
+            req.setAttribute("require_confirm", true);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("pages/solve-prepare.jsp");
+            requestDispatcher.forward(req, resp);
+        }
     }
 
     private void doGetConfirm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -84,9 +88,7 @@ public class SolveServlet extends HttpServlet {
             return;
         }
 
-         if (Objects.equals(req.getParameter("confirm"), "1"))
-            doGetConfirm(req, resp);
-        else if (session.getAttribute("test") == null)
+        if (session.getAttribute("test") == null)
              doGetStart(req, resp);
         else if (Objects.equals(req.getParameter("stop"), "1"))
             check(req, resp);
